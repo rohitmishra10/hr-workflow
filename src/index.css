@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-slate-900;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+.react-flow__node {
+  @apply rounded-xl shadow-card border border-slate-200 transition-all bg-white cursor-pointer;
+}
+
+.react-flow__node:hover {
+  @apply shadow-card-hover border-slate-300;
+}
+
+.react-flow__node.selected {
+  @apply border-2 border-primary-500 shadow-card-hover;
+}
+
+.react-flow__handle {
+  @apply w-3 h-3 bg-white border-2 border-slate-300 transition-colors;
+}
+
+.react-flow__handle:hover, .react-flow__node.selected .react-flow__handle {
+  @apply border-primary-500 bg-primary-50;
+}
