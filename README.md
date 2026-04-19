@@ -1,73 +1,54 @@
-# React + TypeScript + Vite
+# HR Workflow Designer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-grade, SaaS-style drag-and-drop workflow builder designed specifically for HR automations. Built with React, Vite, TypeScript, React Flow, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Pristine SaaS Canvas Layout**: A strict 4-pane layout featuring a fixed Left Sidebar, Top Bar, Center Canvas, and a dynamic Right Inspector Panel.
+- **Node Configuration Engine**: A schema-driven Form Engine dynamically mounts configuration parameters based on strictly typed Custom Nodes instead of hardcoding inputs.
+- **Modular Node System**: Drag and drop custom structured React Flow cards featuring:
+  - Start Trigger
+  - Human Tasks
+  - Approval Steps
+  - Automated Actions
+  - End States
+- **Validating Mock Workflow Execution**: Simulates workflow runs including structural checks (missing connections, cycle detection, multi-start rules) and renders logs dynamically.
 
-## React Compiler
+## 🛠 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** (Vite build)
+- **TypeScript** (Strict typings enforcing UI boundaries)
+- **Tailwind CSS v3** (SaaS tailored styling, shadow design, unified tokens)
+- **Zustand** (Isolated reactive state management out of React scope)
+- **React Flow (`@xyflow/react`)** (Interactive node-graph algorithms and edge connections)
+- **Lucide React** (Consistent modern iconography)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Project Architecture
+```text
+src/
+├── components/          
+│   ├── canvas/          # React Flow implementations, minimaps, and drops
+│   ├── forms/           # Dynamic Form Engine and primitive fields
+│   ├── layout/          # 4-pane App shell structure
+│   ├── nodes/           # Node logic separated from visual React Flow wrapper
+│   └── panels/          # Inspector and properties views
+├── services/            # Mock API execution layer
+├── store/               # Zustand action dispatchers and node definitions
+├── types/               # Type-safe schemas restricting application bounds
+└── utils/               # Serialization and DFS topology cycle validation
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏁 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+3. **Interact:**
+   Navigate to `http://localhost:5173`. Drag elements from the left palette to generate complex node webs and hit `Run Workflow`!
